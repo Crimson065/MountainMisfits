@@ -8,16 +8,6 @@ header img{
     max-height:179px;
 }
 
-body {
-    font-family:Verdana, Geneva, sans-serif;
-    max-width:900px;
-    border:solid white 5px;
-    background-color: #000000;
-    margin-left:auto;
-    margin-right:auto;
-    height:770px;
-}
-
 nav {
     padding-left:40px;
     max-width:100%;
@@ -54,8 +44,9 @@ section#homepage {
     border-bottom: solid white 2px;
     background-image:url(Images/images/fairheadricky.jpg);
     background-repeat: no-repeat;
-    background-position:center;
-    background-position: left;
+    background-position: 10% 50%;
+    
+    
 }
 section#gallery {
     margin:0px;
@@ -118,6 +109,7 @@ footer {
 }
 
 footer p {
+    text-align:center;
     margin:0px;
     color:white;
     font-size: 18px;

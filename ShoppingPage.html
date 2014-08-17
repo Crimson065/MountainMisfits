@@ -1,7 +1,194 @@
 <!DOCTYPE HTML>
 <html>
-
-
-
-
+    
+    <head>
+        <title>Adventure Products</title>
+        <link href="Mountain.css" rel="stylesheet">
+        <style>
+            body {
+                font-family:Verdana, Geneva, sans-serif;
+                max-width:900px;
+                border:solid white 5px;
+                background-color: #000000;
+                margin-left:auto;
+                margin-right:auto;
+                height:850px;
+            }
+            #shoppingpage {
+                background-color: #666;
+                margin:0;
+                float:left;
+                width:100%;
+            }
+            #shopIntro {
+                color:white;
+                text-align:center;
+                background-color:#666;
+                margin:0;
+                float:left;
+                width:100%;
+                height:70px;
+            }
+            #Products {
+                float:left;
+                padding-top:10px;
+                width:80%;
+                padding-left:10%;
+            }
+            #ProductsTable {
+                border: 4px solid white;
+            }
+            td {
+                border: 2px solid white;
+            }
+            .TDHead {
+                background-color:rgba(126, 30, 30, 0.68);
+                width:20%;
+            }
+            .input {
+                width:60%;
+                margin-left:20%;
+                margin-right:20%;
+                text-align: center;
+                
+            }
+            #blanks {
+                color:#666;
+            }
+        </style>
+        <script>
+            var BootsPrice = "";
+            var BootsQuantity = "";
+            var discountVariable = "";
+            
+            var RopePrice = 30;
+            var RopeQuantity = "";
+            
+            var HarnessPrice = 60;
+            var HarnessQuantity = "";
+            
+            var totalBPrice = "";
+            var totalRPrice = "";
+            var totalHPrice = "";
+            
+            function totalBootsPrice() {
+                BootsQuantity = document.getElementById("Boots").value;
+                if(BootsQuantity != "1"){
+                    var discountVariable = eval(BootsQuantity % 3);
+                    if(discountVariable == "0") {
+                        BootsPrice = 30;
+                    } else {
+                        BootsPrice = 35;
+                    }
+                } else {
+                    BootsPrice = 35;
+                }
+                totalBPrice = BootsPrice * BootsQuantity;
+                document.getElementById("BootsResult").value = totalBPrice;
+            }
+            function totalRopePrice() {
+                RopeQuantity = document.getElementById("Rope").value;
+                totalRPrice = RopePrice * RopeQuantity;
+                document.getElementById("RopeResult").value = totalRPrice;
+            }
+            function totalHarnessPrice() {
+                HarnessQuantity = document.getElementById("Harness").value;
+                totalHPrice = HarnessPrice * HarnessQuantity;
+                document.getElementById("HarnessResult").value = totalHPrice;
+            }
+            
+            var dump = "";
+            var OverallPrice = totalBPrice + totalRPrice + totalHPrice;
+            
+            function Transaction() {
+                dump += "Your purchase of: <br>"
+                if(BootsQuantity != 0) {
+                    if(BootsQuantity != 1) {
+                        dump += "- " + BootsQuantity + " pairs of Sturdy Boots";
+                    } else {
+                        dump += "- " + BootsQuantity + " pair of Sturdy Boots";
+                    }
+                } else {
+                    dump;
+                }
+                dump += "<br>";
+                if(RopeQuantity != 0) {
+                    if(RopeQuantity != 1) {
+                        dump += "- " + RopeQuantity + " lengths of rope";
+                    } else {
+                        dump += "- " + RopeQuantity + " length of rope";
+                    }
+                } else {
+                    dump;
+                }
+                dump += "<br>";
+                if (HarnessQuantity != 0) {
+                    if(HarnessQuantity != 1) {
+                        dump += "- " + HarnessQuantity + " harnesses";
+                    } else {
+                        dump += "- " + HarnessQuantity + " harness";
+                    }
+                } else {
+                    dump;
+                }
+                dump += "<br>";
+                dump += "comes to a total of $" + OverallPrice + ". Thank you for doing business with us."
+                
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <img src="Images/images/logo2_03.png">
+        </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="Gallery.html">Gallery</a>
+        <a style="background-color:rgba(0, 128, 255, 0.69);" href="#">Products</a>
+    </nav>
+        
+    <section id="shoppingpage">
+        <div id="shopIntro">
+            <h5><i>Mountain Misfits</i> is not responsible for any injuries caused during use of sold products.</h5><hr><br>
+        </div>
+        <div id="Products">
+            <form id="Form1">
+                <table id="ProductsTable">
+                    <tr>
+                        <td class="TDHead"><b><i>Products</i></b></td>
+                        <td class="TDHead"><b><i>Price</i></b></td>
+                        <td class="TDHead"><b><i>Quantity</i></b></td>
+                        <td class="TDHead"><b><i>Total ($)</i></b></td>
+                    </tr>
+                    <tr>
+                        <td><img src="Images/Shopping-Boots.jpg" alt="Sturdy Boots" height=100px></td>
+                        <td><b>$35</b> each or<br><b>$90</b> for 3.</td>
+                        <td id="blanks"><input type="number" class="input" id="Boots" min="0" onchange="totalBootsPrice()"></td>
+                        <td><input type="number" class="input" id="BootsResult"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="Images/Shopping-Harness.jpg" alt="Reliable Harness" height=100px></td>
+                        <td><b>$60</b> each.</td>''
+                        <td id="blanks"><input type="number" class="input" id="Harness" min="0" onchange="totalHarnessPrice()"></td>
+                        <td><input type="number" class="input" id="HarnessResult"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="Images/Shopping-Rope.jpg" alt="Length of Rope" height=100px width=100px></td>
+                        <td><b>$30</b> for 30m.</td>
+                        <td id="blanks"><input type="number" class="input" id="Rope" min="0" onchange="totalRopePrice()"></td>
+                        <td><input type="number" class="input" id="RopeResult"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><input type="button" class="input" value="Complete Transaction" onClick="Transaction()"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </section>
+        
+    <footer>
+        <p>&copy;2012 ICTADG - Privacy Policy - Terms Of Use</p>
+    </footer>
+</body>
 </html>
