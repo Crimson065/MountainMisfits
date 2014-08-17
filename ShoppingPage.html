@@ -12,7 +12,6 @@
                 background-color: #000000;
                 margin-left:auto;
                 margin-right:auto;
-                height:850px;
             }
             #shoppingpage {
                 background-color: #666;
@@ -55,21 +54,46 @@
             #blanks {
                 color:#666;
             }
+            #SoDone {
+                text-align:center;
+                
+            }
         </style>
         <script>
-            var BootsPrice = "";
-            var BootsQuantity = "";
-            var discountVariable = "";
+            function setup() {
+               
+                var BootsPrice = 0;
+                var BootsQuantity = 0;
+                var discountVariable = 0;
+            
+                var RopePrice = 30;
+                var RopeQuantity = 0;
+            
+                var HarnessPrice = 60;
+                var HarnessQuantity = 0;
+
+                var totalBPrice = 0;
+                var totalRPrice = 0;
+                var totalHPrice = 0;
+                
+                document.getElementById("Boots").value = 0;
+                document.getElementById("Harness").value = 0;
+                document.getElementById("Rope").value = 0;
+            }
+            
+            var BootsPrice = 0;
+            var BootsQuantity = 0;
+            var discountVariable = 0;
             
             var RopePrice = 30;
-            var RopeQuantity = "";
+            var RopeQuantity = 0;
             
             var HarnessPrice = 60;
-            var HarnessQuantity = "";
-            
-            var totalBPrice = "";
-            var totalRPrice = "";
-            var totalHPrice = "";
+            var HarnessQuantity = 0;
+
+            var totalBPrice = 0;
+            var totalRPrice = 0;
+            var totalHPrice = 0;
             
             function totalBootsPrice() {
                 BootsQuantity = document.getElementById("Boots").value;
@@ -98,46 +122,49 @@
             }
             
             var dump = "";
-            var OverallPrice = totalBPrice + totalRPrice + totalHPrice;
+            
             
             function Transaction() {
-                dump += "Your purchase of: <br>"
+                var OverallPrice = totalBPrice + totalRPrice + totalHPrice;
+                document.getElementById("SoDone").innerHTML = dump += "<br>"; 
+                document.getElementById("SoDone").innerHTML = dump += "Your purchase of: <br>";
                 if(BootsQuantity != 0) {
                     if(BootsQuantity != 1) {
-                        dump += "- " + BootsQuantity + " pairs of Sturdy Boots";
+                        document.getElementById("SoDone").innerHTML = dump += "- " + BootsQuantity + " pairs of Sturdy Boots";
                     } else {
-                        dump += "- " + BootsQuantity + " pair of Sturdy Boots";
+                        document.getElementById("SoDone").innerHTML = dump += "- " + BootsQuantity + " pair of Sturdy Boots";
                     }
                 } else {
-                    dump;
+                    document.getElementById("SoDone").innerHTML = dump;
                 }
-                dump += "<br>";
-                if(RopeQuantity != 0) {
-                    if(RopeQuantity != 1) {
-                        dump += "- " + RopeQuantity + " lengths of rope";
-                    } else {
-                        dump += "- " + RopeQuantity + " length of rope";
-                    }
-                } else {
-                    dump;
-                }
-                dump += "<br>";
+                document.getElementById("SoDone").innerHTML = dump += "<br>";
                 if (HarnessQuantity != 0) {
                     if(HarnessQuantity != 1) {
-                        dump += "- " + HarnessQuantity + " harnesses";
+                        document.getElementById("SoDone").innerHTML = dump += "- " + HarnessQuantity + " harnesses";
                     } else {
-                        dump += "- " + HarnessQuantity + " harness";
+                        document.getElementById("SoDone").innerHTML = dump += "- " + HarnessQuantity + " harness";
                     }
                 } else {
-                    dump;
+                    document.getElementById("SoDone").innerHTML = dump;
                 }
-                dump += "<br>";
-                dump += "comes to a total of $" + OverallPrice + ". Thank you for doing business with us."
+                document.getElementById("SoDone").innerHTML = dump += "<br>";
+                if(RopeQuantity != 0) {
+                    if(RopeQuantity != 1) {
+                        document.getElementById("SoDone").innerHTML = dump += "- " + RopeQuantity + " lengths of rope";
+                    } else {
+                        document.getElementById("SoDone").innerHTML = dump += "- " + RopeQuantity + " length of rope";
+                    }
+                } else {
+                    document.getElementById("SoDone").innerHTML = dump;
+                }
+                document.getElementById("SoDone").innerHTML = dump += "<br>";
+                document.getElementById("SoDone").innerHTML = dump += "comes to a total of $" + OverallPrice + ". Thank you for doing business with us. <br>";
                 
+                var UserCreditCard = prompt("Please enter your credit card details to complete your transaction, followed by your pin code. ^^")
             }
         </script>
     </head>
-    <body>
+    <body onload="setup()">
         <header>
             <img src="Images/images/logo2_03.png">
         </header>
@@ -181,6 +208,9 @@
                     </tr>
                     <tr>
                         <td colspan="4"><input type="button" class="input" value="Complete Transaction" onClick="Transaction()"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><div id="SoDone"></div></td>
                     </tr>
                 </table>
             </form>
